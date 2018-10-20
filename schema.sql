@@ -1,19 +1,18 @@
 create database techtest
-    character set = 'utf8mb4';
+character set = "utf8mb4";
 
 use techtest;
 
 create table recipe (
   id char(8) not null primary key,
-  name varchar(191) not null,
-  descripton varchar(191)
+  name varchar(191) not null
 );
 alter table recipe
     add constraint recipe_uk
-    unique key (name);
+    UNIQUE key (name);
 
 create table ingredient (
-  id char(8) not null primary key,
+  id char(8) not null PRIMARY key,
   name varchar(191) not null,
   kcal bigint(191) not null,
   sugar bigint(8) not null,
@@ -22,7 +21,7 @@ create table ingredient (
 );
 alter table ingredient
     add constraint ingredient_uk
-    unique key(name);
+    UNIQUE key(name);
 
 create table recipe_ingredient (
   recipe_id char(8) not null,
@@ -31,11 +30,11 @@ create table recipe_ingredient (
 
 alter table recipe_ingredient
   add constraint recipe_ingredient_uk
-  unique key (recipe_id, ingredient_id),
-  add constraint recipe_ingrecient_uk_recipe_fk
+  UNIQUE key (recipe_id, ingredient_id),
+  add constraint recipe_ingredient_uk_recipe_fk
   foreign key (recipe_id) references recipe(id),
   add constraint recipe_ingredient_uk_ingredient_fk
-  foreign key (ingredient_id) references ingrecient(id);
+  foreign key (ingredient_id) references ingredient(id);
 
 insert into recipe(id, name)
 values
@@ -59,7 +58,7 @@ values
        ('2', 'Patata', 150, 50, 20, 30),
        ('3', 'Arroz', 76, 33, 21, 100),
        ('4', 'Gamba', 40, 5, 20, 40),
-       ('5', 'Pescado', 40, 30),
+       ('5', 'Pescado', 40, 30, 0, 0),
        ('6', 'Harina', 75, 50, 30, 43),
        ('7', 'Queso', 140, 70, 50, 30),
        ('8', 'Albahaca', 10, 5, 7, 15),

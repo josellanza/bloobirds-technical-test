@@ -5,8 +5,8 @@ var con;
 var init = () => {
     con = mysql.createConnection({
         host: "127.0.0.1",
-        user: "root", //your user
-        password: "",// your password
+        user: "josellanza", //your user
+        password: "Jose1234$",// your password
         database: "techtest"
     });
 }
