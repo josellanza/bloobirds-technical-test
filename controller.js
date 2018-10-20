@@ -1,11 +1,12 @@
-var testsql = require('./config_sql');
+const testsql = require('./config_sql');
 
 
-var query = function(req, res) {
+const query = (req, res) => {
     console.log("test");
     testsql.init();
+    const search = req.body;
     
-    testsql.query('select * from recipe').then((data) => {
+    testsql.query('SELECT * FROM pet WHERE name LIKE '%search%'').then((data) => {
         res.writeContinue();
         res.statusCode = 200;
         res.setHeader('Content-Type', 'application/json');

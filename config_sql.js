@@ -1,8 +1,8 @@
-var mysql = require('mysql');
+const mysql = require('mysql');
 
-var con;
+const con;
 
-var init = () => {
+const init = () => {
     con = mysql.createConnection({
         host: "127.0.0.1",
         user: "josellanza", //your user
@@ -11,11 +11,11 @@ var init = () => {
     });
 }
 
-var query = function(sql) {
+const query = (sql) => {
     return new Promise((resolve, reject) => {
-        con.connect(function(err) {
+        con.connect((err) => {
             if (err) return reject(err);
-            con.query(sql, function (err, result) {
+            con.query(sql,  (err, result) => {
                 if (err) return reject(err);
                 return resolve(result);
             });
