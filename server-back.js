@@ -3,10 +3,6 @@ const app = express();
 const router = express.Router();
 const controller = require("./controller");
 
-// app.get('/query', (req, res) => {
-//   controller.query;
-// });
-
 router.route('/query')
   .get(controller.query)
 

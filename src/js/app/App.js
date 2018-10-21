@@ -4,7 +4,7 @@ import axios from 'axios'
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: ''};
+    this.state = {value: '', recipe: ''};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -16,8 +16,13 @@ class App extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    axios.get('http://localhost:3000/query')
+    axios.get('http://localhost:3000/query', {
+      params: { 
+        id: this.state.value
+      }
+    })
     .then( (response) => {
+      this.setState({ recipe: response.data["0"].name})
       console.log(response);
     })
     .catch(function (error) {
@@ -32,6 +37,7 @@ class App extends React.Component {
         <button className='button' onClick={this.handleSubmit}>
           Click Me
         </button>
+        <div>{this.state.recipe}</div>
       </form>
     );
   }
