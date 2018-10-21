@@ -4,10 +4,10 @@ const router = express.Router();
 const controller = require("./controller");
 
 router.route('/query')
-    .post(controller.query);
+  .get(controller.query)
 
 app.use(router);
 
 app.listen(3000, () => {
-    console.log("Node server running on http://localhost:3000");
+    console.log("Node server running on https://localhost:3000");
 });

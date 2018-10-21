@@ -8,6 +8,13 @@ module.exports = {
       filename: "bundle.js",
       path: __dirname + "/dist"
   },
+  devServer: {
+    port: 3000,
+    open: true,
+    proxy: {
+        "/api": "http://localhost:8080"
+    }
+  },
   mode: "development",
   devtool: "source-map",
   resolve: {

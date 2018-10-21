@@ -1,35 +1,43 @@
 import React, {Component} from 'react';
 
 class App extends React.Component {
-  constructor() {
-    super();
-    this.state = { user: {} };
-    this.onSubmit = this.handleSubmit.bind(this);
+  constructor(props) {
+    super(props);
+    this.state = {value: ''};
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit(e) {
-    e.preventDefault();
-    var self = this;
-    // On submit of the form, send a POST request with the data to the server.
-    fetch('/users', { 
-        method: 'POST',
-        data: {
-          name: self.refs.name        }
-      })
-      .then(function(response) {
-        return response.json()
-      }).then(function(body) {
-        console.log(body);
-      });
+
+  handleChange(event) {
+    this.setState({value: event.target.value});
   }
+
+  handleSubmit(event) {
+    axios.get('/https://localhost:3000/query/', {
+      params: {
+        ID: 12345
+      }
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   render() {
     return (
-      <form onSubmit={this.onSubmit}>
-        <input type="text" placeholder="Search for recipe" ref="search"/>
-        <input type="submit" />
+      <form onSubmit={this.handleSubmit}>
+        <label>
+          Name:
+          <input type="text" value={this.state.value} onChange={this.handleChange} />
+        </label>
+        <input type="submit" value="Submit" />
       </form>
     );
   }
 }
-
 
 export default App;
