@@ -9,10 +9,10 @@ module.exports = {
       path: __dirname + "/dist"
   },
   devServer: {
-    port: 3000,
+    port: 8080,
     open: true,
     proxy: {
-        "/api": "http://localhost:8080"
+      "*" : "http://localhost:3000"
     }
   },
   mode: "development",

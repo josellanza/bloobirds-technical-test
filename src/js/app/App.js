@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios'
 
 class App extends React.Component {
   constructor(props) {
@@ -13,13 +14,10 @@ class App extends React.Component {
     this.setState({value: event.target.value});
   }
 
-  handleSubmit(event) {
-    axios.get('/https://localhost:3000/query/', {
-      params: {
-        ID: 12345
-      }
-    })
-    .then(function (response) {
+  handleSubmit(e) {
+    e.preventDefault();
+    axios.get('http://localhost:3000/query')
+    .then( (response) => {
       console.log(response);
     })
     .catch(function (error) {
@@ -29,12 +27,11 @@ class App extends React.Component {
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <label>
-          Name:
-          <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Submit" />
+      <form >
+        <input type="text" value={this.state.value} onChange={this.handleChange} />
+        <button className='button' onClick={this.handleSubmit}>
+          Click Me
+        </button>
       </form>
     );
   }
