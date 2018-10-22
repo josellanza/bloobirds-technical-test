@@ -38,12 +38,12 @@ class App extends React.Component {
           <button className='button' onClick={this.handleSubmit}>
             Search
           </button>
-          <ul>
-            {this.state.ingredient.map(function(user, i){
-              return <li key={i}>{user.name}</li>
-            })}
-          </ul>
         </form>
+        <ul>
+          {this.state.ingredient.map( (user, i) => {
+            return <li key={i}>{user.name}</li>
+          })}
+        </ul>
       </section>
     );
   }
