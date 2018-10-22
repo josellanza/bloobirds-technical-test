@@ -4,17 +4,23 @@ import axios from 'axios';
 class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {value: '', ingredient: ['']};
+    this.state = {
+      value: '', 
+      ingredient: [],
+      loading: true
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+
 
   handleChange(event) {
     this.setState({value: event.target.value});
   }
 
   handleSubmit(e) {
+    this.setState({ loading: false })
     e.preventDefault();
     axios.get('http://localhost:3000/query', {
       params: { 
@@ -43,8 +49,8 @@ class App extends React.Component {
           {this.state.ingredient.map( (item, i) => {
             return <li key={i}>{item.name}</li>
           })}
-          {this.state.ingredient.length == 0 && (
-            <li>NO RESULTS FOUND</li>
+          {!this.state.loading && this.state.ingredient.length === 0 && (
+            <li>NO RESULTS FOUND :(</li>
           )}
         </ul>
       </section>
