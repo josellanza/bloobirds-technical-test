@@ -4,8 +4,7 @@ const router = express.Router();
 const controller = require("./controller");
 
 router.route('/query')
-  .get(controller.query)
-  .get(controller.query)
+    .get(controller.query)
 
 app.use(router);
 

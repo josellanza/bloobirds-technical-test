@@ -5,8 +5,8 @@ let con;
 const init = () => {
     con = mysql.createConnection({
         host: "localhost",
-        user: "josellanza", //your user
-        password: "Jose1234$",// your password
+        user: "josellanza", 
+        password: "Jose1234$",
         database: "techtest"
     });
 }
@@ -14,11 +14,11 @@ const init = () => {
 const query = (sql) => {
     return new Promise((resolve, reject) => {
         con.connect((err) => {
-            if (err) return reject(err);
-            con.query(sql,  (err, result) => {
-                if (err) return reject(err);
-                return resolve(result);
-            });
+          if (err) return reject(err);
+          con.query(sql,  (err, result) => {
+              if (err) return reject(err);
+              return resolve(result);
+          });
         });
     });
 }
