@@ -18,7 +18,7 @@ class App extends React.Component {
     e.preventDefault();
     axios.get('http://localhost:3000/query', {
       params: { 
-        id: this.state.value
+        name: this.state.value
       }
     })
     .then( (response) => {
